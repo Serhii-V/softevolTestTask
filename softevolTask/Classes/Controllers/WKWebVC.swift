@@ -7,29 +7,41 @@
 //
 
 import UIKit
+import WebKit
 
-class WKWebVC: UIViewController {
+class WKWebVC: UIViewController, UITextFieldDelegate {
+    @IBOutlet weak var webView: WKWebView!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var moreButton: UIButton!
+    @IBOutlet weak var urlTextField: UITextField!
+
+    // home url "https://www.google.com.ua"
+    var currentUrl: String = "https://www.google.com.ua" {
+        didSet {
+
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateWebView(urlString: currentUrl)
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func updateWebView(urlString: String) {
+        guard let url = URL(string: urlString) else { return }
+        let request = URLRequest(url: url)
+        webView.load(request)
     }
-    */
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let newUrl = textField.text else { return true }
+        updateWebView(urlString: newUrl)
+        textField.resignFirstResponder()
+        return true
+    }
 
 }
