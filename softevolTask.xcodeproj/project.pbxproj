@@ -12,6 +12,8 @@
 		C5DC1A8920FDFB08006A5602 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5DC1A8820FDFB08006A5602 /* Assets.xcassets */; };
 		C5DC1A8C20FDFB08006A5602 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5DC1A8A20FDFB08006A5602 /* LaunchScreen.storyboard */; };
 		C5DC1A9620FF8BC8006A5602 /* WKWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DC1A9520FF8BC8006A5602 /* WKWebVC.swift */; };
+		C5DC1A9D20FFC317006A5602 /* DropDownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DC1A9C20FFC317006A5602 /* DropDownButton.swift */; };
+		C5DC1AA020FFC55C006A5602 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DC1A9F20FFC55C006A5602 /* DropDownView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		C5DC1A8B20FDFB08006A5602 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C5DC1A8D20FDFB08006A5602 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5DC1A9520FF8BC8006A5602 /* WKWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebVC.swift; sourceTree = "<group>"; };
+		C5DC1A9C20FFC317006A5602 /* DropDownButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownButton.swift; sourceTree = "<group>"; };
+		C5DC1A9F20FFC55C006A5602 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				C5DC1A9820FF8BF7006A5602 /* Controllers */,
+				C5DC1A9E20FFC31E006A5602 /* CustomUI */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -102,6 +107,15 @@
 				C5DC1A8820FDFB08006A5602 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		C5DC1A9E20FFC31E006A5602 /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				C5DC1A9C20FFC317006A5602 /* DropDownButton.swift */,
+				C5DC1A9F20FFC55C006A5602 /* DropDownView.swift */,
+			);
+			path = CustomUI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,7 +190,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5DC1A8220FDFB06006A5602 /* AppDelegate.swift in Sources */,
+				C5DC1AA020FFC55C006A5602 /* DropDownView.swift in Sources */,
 				C5DC1A9620FF8BC8006A5602 /* WKWebVC.swift in Sources */,
+				C5DC1A9D20FFC317006A5602 /* DropDownButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
