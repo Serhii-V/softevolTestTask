@@ -9,18 +9,18 @@
 import UIKit
 import WebKit
 
-class WKWebVC: UIViewController, UITextFieldDelegate, WKNavigationDelegate, WKUIDelegate {
+class WKWebVC: UIViewController, UITextFieldDelegate, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHandler {
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var urlTextField: UITextField!
     @IBOutlet weak var printButton: UIButton!
     
-    let homeUrl = "https://www.google.com.ua"
-
+    let homeUrl =  "http://elementstest.customertests.com/"
     override func viewDidLoad() {
         super.viewDidLoad()
         webView.navigationDelegate = self
         webView.uiDelegate = self
+        setup()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -47,6 +47,21 @@ class WKWebVC: UIViewController, UITextFieldDelegate, WKNavigationDelegate, WKUI
         urlTextField.text = webView.url?.absoluteString
     }
 
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        if message.name == "print" {
+            webPrint()
+        } else {
+            print("Some other message sent from web page...")
+        }
+    }
+
+    func setup() {
+        let configuration = WKWebViewConfiguration()
+        let script = WKUserScript(source: "window.print = function() { window.webkit.messageHandlers.print.postMessage('print') }", injectionTime: WKUserScriptInjectionTime.atDocumentEnd, forMainFrameOnly: true)
+        configuration.userContentController.addUserScript(script)
+        configuration.userContentController.add(self as WKScriptMessageHandler, name: "print")
+    }
+
     @IBAction func backButtonTapped(_ sender: UIButton) {
         if webView.canGoBack {
             webView.goBack()
@@ -54,6 +69,10 @@ class WKWebVC: UIViewController, UITextFieldDelegate, WKNavigationDelegate, WKUI
     }
 
     @IBAction func printButtonTapped(_ sender: UIButton) {
+        webPrint()
+    }
+
+    func webPrint() {
         let printController = UIPrintInteractionController.shared
         let printInfo = UIPrintInfo(dictionary:nil)
         printInfo.outputType = UIPrintInfoOutputType.general
