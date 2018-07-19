@@ -15,12 +15,7 @@ class WKWebVC: UIViewController, UITextFieldDelegate, WKNavigationDelegate, WKUI
     @IBOutlet weak var urlTextField: UITextField!
     @IBOutlet weak var printButton: UIButton!
     
-    // home url "https://www.google.com.ua"
-    var currentUrl: String = "https://www.google.com.ua" {
-        didSet {
-
-        }
-    }
+    let homeUrl = "https://www.google.com.ua"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +25,7 @@ class WKWebVC: UIViewController, UITextFieldDelegate, WKNavigationDelegate, WKUI
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        updateWebView(urlString: currentUrl)
+        updateWebView(urlString: homeUrl)
     }
 
     func updateWebView(urlString: String) {
@@ -60,7 +55,6 @@ class WKWebVC: UIViewController, UITextFieldDelegate, WKNavigationDelegate, WKUI
 
     @IBAction func printButtonTapped(_ sender: UIButton) {
         let printController = UIPrintInteractionController.shared
-
         let printInfo = UIPrintInfo(dictionary:nil)
         printInfo.outputType = UIPrintInfoOutputType.general
         printInfo.jobName = "print webPage"//(webView.url?.absoluteString)!
@@ -72,12 +66,7 @@ class WKWebVC: UIViewController, UITextFieldDelegate, WKNavigationDelegate, WKUI
         printController.printInfo = printInfo
         printController.showsNumberOfCopies = true
         printController.printFormatter = webView.viewPrintFormatter()
-
         printController.present(animated: true, completionHandler: nil)
     }
-
-
-
-
 }
 
